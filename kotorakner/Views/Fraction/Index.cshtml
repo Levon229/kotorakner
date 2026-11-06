@@ -1,0 +1,60 @@
+﻿@model Kotorakner.Models.FractionModel
+
+@{
+    ViewData["Title"] = "Կոտորակների հաշվիչ";
+}
+
+<div class="container py-4">
+    <h1 class="mb-4">Կոտորակների հաշվիչ</h1>
+
+    <form asp-controller="Fraction"
+          asp-action="Calculate"
+          method="post"
+          class="card shadow-sm p-4">
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <h5>Առաջին կոտորակ</h5>
+
+                <label asp-for="Numerator1" class="form-label">Համարիչ</label>
+                <input asp-for="Numerator1" type="number" class="form-control mb-3" />
+
+                <label asp-for="Denominator1" class="form-label">Հայտարար</label>
+                <input asp-for="Denominator1" type="number" class="form-control" />
+            </div>
+
+            <div class="col-md-4">
+                <h5>Գործողություն</h5>
+
+                <label asp-for="Operation" class="form-label">Ընտրիր գործողությունը</label>
+                <select asp-for="Operation" class="form-select">
+                    <option value="+">Գումարում (+)</option>
+                    <option value="-">Հանում (-)</option>
+                    <option value="*">Բազմապատկում (*)</option>
+                    <option value="/">Բաժանում (/)</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <h5>Երկրորդ կոտորակ</h5>
+
+                <label asp-for="Numerator2" class="form-label">Համարիչ</label>
+                <input asp-for="Numerator2" type="number" class="form-control mb-3" />
+
+                <label asp-for="Denominator2" class="form-label">Հայտարար</label>
+                <input asp-for="Denominator2" type="number" class="form-control" />
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-4">
+            Հաշվել
+        </button>
+    </form>
+
+    @if (!string.IsNullOrWhiteSpace(Model.Result))
+    {
+        <div class="alert alert-success mt-4">
+            <strong>Արդյունք՝</strong> @Model.Result
+        </div>
+    }
+</div>
